@@ -1,0 +1,53 @@
+.tile.correto {
+  background-color: #538d4e;
+  border-color: #538d4e;
+}
+.tile.presente {
+  background-color: #b59f3b;
+  border-color: #b59f3b;
+}
+.tile.incorreto {
+  background-color: #3a3a3c;
+  border-color: #3a3a3c;
+}
+
+.tile.flip {
+  transform: rotateX(90deg);
+  transition: 0.25s;
+}
+.tile.reveal {
+  transform: rotateX(0deg);
+  transition: 0.25s;
+}
+
+.tile.flip {
+  transform: rotateX(90deg);
+  transition: transform 0.25s ease-in;
+}
+
+.tile.reveal {
+  transform: rotateX(0deg);
+  transition: transform 0.25s ease-out;
+}
+
+.tile:not(:empty) {
+  border-color: #565758;
+  animation: pop 0.1s ease-in-out;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+.key {
+  user-select: none;
+  touch-action: manipulation;
+}
