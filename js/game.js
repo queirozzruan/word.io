@@ -27,7 +27,7 @@ class Wordio {
   checarTentativa(tentativa) {
     const resultado = Array(5).fill("incorreto");
     const palavraCorretaArray = this.palavraCorreta.split("");
-    const tentativaArray = tentativa.split(""); // Adicionado esta linha que faltava
+    const tentativaArray = tentativa.split("");
 
     // Verdes
     tentativaArray.forEach((char, i) => {

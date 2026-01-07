@@ -1,53 +1,47 @@
-.tile.correto {
-  background-color: #538d4e;
-  border-color: #538d4e;
-}
-.tile.presente {
-  background-color: #b59f3b;
-  border-color: #b59f3b;
-}
-.tile.incorreto {
-  background-color: #3a3a3c;
-  border-color: #3a3a3c;
+:root {
+  --bg-dark: #121213;
+  --card-bg: #1a1a1b;
+  --tile-empty: #272729;
+  --correct: #6aaa64;
+  --present: #c9b458;
+  --absent: #3a3a3c;
+  --key-bg: #818384;
+  --text-white: #ffffff;
 }
 
-.tile.flip {
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: var(--bg-dark);
+  color: var(--text-white);
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  justify-content: center;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* Cores de Feedback */
+.correto {
+  background-color: var(--correct) !important;
+}
+.presente {
+  background-color: var(--present) !important;
+}
+.incorreto {
+  background-color: var(--absent) !important;
+}
+
+/* Animação suave */
+.flip {
   transform: rotateX(90deg);
-  transition: 0.25s;
 }
-.tile.reveal {
+
+.reveal {
   transform: rotateX(0deg);
-  transition: 0.25s;
-}
-
-.tile.flip {
-  transform: rotateX(90deg);
-  transition: transform 0.25s ease-in;
-}
-
-.tile.reveal {
-  transform: rotateX(0deg);
-  transition: transform 0.25s ease-out;
-}
-
-.tile:not(:empty) {
-  border-color: #565758;
-  animation: pop 0.1s ease-in-out;
-}
-
-@keyframes pop {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-.key {
-  user-select: none;
-  touch-action: manipulation;
+  transition: transform 0.5s ease;
 }
