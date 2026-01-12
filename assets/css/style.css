@@ -1,14 +1,3 @@
-:root {
-  --bg-dark: #121213;
-  --card-bg: #1a1a1b;
-  --tile-empty: #272729;
-  --correct: #6aaa64;
-  --present: #c9b458;
-  --absent: #3a3a3c;
-  --key-bg: #818384;
-  --text-white: #ffffff;
-}
-
 * {
   margin: 0;
   padding: 0;
@@ -16,32 +5,252 @@
 }
 
 body {
-  background-color: var(--bg-dark);
-  color: var(--text-white);
-  font-family: "Roboto", sans-serif;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+  background: #fafafa;
+  color: #1a1a1a;
   display: flex;
   justify-content: center;
-  height: 100vh;
-  overflow: hidden;
+  align-items: center;
+  min-height: 100vh;
+  padding: 20px;
 }
 
-/* Cores de Feedback */
-.correto {
-  background-color: var(--correct) !important;
-}
-.presente {
-  background-color: var(--present) !important;
-}
-.incorreto {
-  background-color: var(--absent) !important;
+#game-container {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
 }
 
-/* Animação suave */
-.flip {
-  transform: rotateX(90deg);
+header {
+  text-align: center;
+  padding-bottom: 16px;
+  border-bottom: 1px solid #e0e0e0;
 }
 
-.reveal {
-  transform: rotateX(0deg);
-  transition: transform 0.5s ease;
+header h1 {
+  font-size: 32px;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #1a1a1a;
+}
+
+header h1 span {
+  color: #054f77;
+}
+
+#board {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  padding: 0 10px;
+}
+
+.row {
+  display: flex;
+  gap: 5px;
+  justify-content: center;
+}
+
+.tile {
+  width: 62px;
+  height: 62px;
+  border: 2px solid #d3d6da;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: 700;
+  text-transform: uppercase;
+  color: #1a1a1a;
+  background: #ffffff;
+  transition: all 0.15s ease;
+}
+
+.tile:not(:empty) {
+  border-color: #878a8c;
+  animation: pop 0.1s ease-in-out;
+}
+
+.tile.correto {
+  background: #6aaa64;
+  border-color: #6aaa64;
+  color: #ffffff;
+}
+
+.tile.presente {
+  background: #c9b458;
+  border-color: #c9b458;
+  color: #ffffff;
+}
+
+.tile.incorreto {
+  background: #787c7e;
+  border-color: #787c7e;
+  color: #ffffff;
+}
+
+.tile.reveal {
+  animation: flip 0.5s ease;
+}
+
+#keyboard {
+  padding: 0 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.key-row {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+}
+
+.key {
+  min-width: 43px;
+  height: 58px;
+  background: #d3d6da;
+  border: none;
+  border-radius: 4px;
+  font-size: 13px;
+  font-weight: 700;
+  color: #1a1a1a;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  text-transform: uppercase;
+  font-family: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.key:hover {
+  background: #c3c6c9;
+  transform: scale(1.02);
+}
+
+.key:active {
+  transform: scale(0.98);
+}
+
+.key.wide {
+  min-width: 65px;
+  font-size: 12px;
+}
+
+.key.correto {
+  background: #6aaa64;
+  color: #ffffff;
+}
+
+.key.correto:hover {
+  background: #5a9a54;
+}
+
+.key.presente {
+  background: #c9b458;
+  color: #ffffff;
+}
+
+.key.presente:hover {
+  background: #b9a448;
+}
+
+.key.incorreto {
+  background: #787c7e;
+  color: #ffffff;
+}
+
+.key.incorreto:hover {
+  background: #686c6e;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes flip {
+  0% {
+    transform: rotateX(0);
+  }
+  50% {
+    transform: rotateX(90deg);
+  }
+  100% {
+    transform: rotateX(0);
+  }
+}
+
+.tile.flip {
+  animation: flip 0.5s ease;
+}
+
+#message {
+  position: fixed;
+  top: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #1a1a1a;
+  color: #ffffff;
+  padding: 16px 24px;
+  border-radius: 8px;
+  font-weight: 600;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+#message:not(.hidden) {
+  opacity: 1;
+}
+
+@media (max-width: 480px) {
+  #game-container {
+    gap: 24px;
+  }
+
+  header h1 {
+    font-size: 28px;
+  }
+
+  .tile {
+    width: 56px;
+    height: 56px;
+    font-size: 28px;
+  }
+
+  .key {
+    min-width: 32px;
+    height: 52px;
+    font-size: 12px;
+  }
+
+  .key.wide {
+    min-width: 52px;
+  }
+}
+
+@media (max-width: 360px) {
+  .tile {
+    width: 52px;
+    height: 52px;
+    font-size: 24px;
+  }
+
+  .key {
+    min-width: 28px;
+    height: 48px;
+    font-size: 11px;
+  }
 }

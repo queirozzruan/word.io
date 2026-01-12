@@ -33,7 +33,7 @@ function criarTeclado() {
     linhaDiv.className = "key-row";
     fileira.forEach((key) => {
       const btn = document.createElement("button");
-      btn.textContent = key === "BACKSPACE" ? "⌫" : key;
+      btn.textContent = key === "BACKSPACE" ? "APAGAR" : key;
       btn.className = "key";
       if (key === "ENTER" || key === "BACKSPACE") btn.classList.add("wide");
       btn.dataset.key = key;
@@ -51,7 +51,7 @@ function processarEntrada(key) {
     const linhaIdx = game.tentativas.length;
     const resultado = game.submeterTentativa();
     if (resultado) animarLinha(linhaIdx, resultado);
-  } else if (key === "BACKSPACE" || key === "⌫") {
+  } else if (key === "BACKSPACE" || key === "APAGAR") {
     game.tentativaAtual = game.tentativaAtual.slice(0, -1);
   } else if (game.tentativaAtual.length < 5 && /^[a-zA-Z]$/.test(key)) {
     game.tentativaAtual += key.toUpperCase();
