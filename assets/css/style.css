@@ -1,3 +1,4 @@
+/* reset CSS */
 * {
   margin: 0;
   padding: 0;
@@ -5,8 +6,7 @@
 }
 
 body {
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI",
-    sans-serif;
+  font-family: "Inter", "Segoe UI", sans-serif;
   background: #fafafa;
   color: #1a1a1a;
   display: flex;
@@ -40,6 +40,8 @@ header h1 {
 header h1 span {
   color: #054f77;
 }
+
+/* design do tabuleiro e teclado */
 
 #board {
   display: flex;
@@ -168,6 +170,8 @@ header h1 span {
   background: #686c6e;
 }
 
+/* animações */
+
 @keyframes pop {
   0% {
     transform: scale(1);
@@ -195,6 +199,8 @@ header h1 span {
 .tile.flip {
   animation: flip 0.5s ease;
 }
+
+/* mensagem de notificação */
 
 #message {
   position: fixed;
@@ -240,6 +246,8 @@ header h1 span {
     min-width: 52px;
   }
 }
+
+/* ajustes para responsividade */
 
 @media (max-width: 360px) {
   .tile {
